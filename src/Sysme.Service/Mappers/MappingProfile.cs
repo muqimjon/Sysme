@@ -46,7 +46,7 @@ public class MappingProfile : Profile
         CreateMap<ScheduleCreationDto, Schedule>();
 
         //Attachment
-        CreateMap<AttachmentResultDto, Attachment>().ReverseMap();
+        CreateMap<AttachmentResultDto, Attachment>();
 
         //Employee
         CreateMap<Employee, EmployeeResultDto>();
