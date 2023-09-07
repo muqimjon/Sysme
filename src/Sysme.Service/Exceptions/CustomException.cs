@@ -7,7 +7,7 @@ internal class CustomException : Exception
         StatusCode = statusCode;
     }
 
-    public CustomException(int statusCode, string message, Exception innerException) : base(message, innerException) 
+    public CustomException(int statusCode, string message, Exception innerException) : base(message, innerException)
     {
         StatusCode = statusCode;
     }

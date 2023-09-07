@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Sysme.Data.IRepositories;
-using Sysme.Domain.Entities.Doctors;
 using Sysme.Domain.Entities.Appointments;
+using Sysme.Domain.Entities.Doctors;
+using Sysme.Domain.Entities.Patients;
 using Sysme.Service.DTOs.Appointments;
 using Sysme.Service.Exceptions;
 using Sysme.Service.Interfaces;
-using Sysme.Domain.Entities.Patients;
 
 namespace Sysme.Service.Services;
 

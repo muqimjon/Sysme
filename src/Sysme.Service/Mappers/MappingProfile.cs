@@ -1,20 +1,18 @@
 using AutoMapper;
-using Sysme.Service.DTOs.Doctors;
-using Sysme.Service.DTOs.Doctors;
-using Sysme.Service.DTOs.Patients;
-using Sysme.Service.DTOs.Patients;
-using Sysme.Service.DTOs.Schedules;
-using Sysme.Service.DTOs.Hospitals;
-using Sysme.Service.DTOs.Schedules;
-using Sysme.Service.DTOs.Hospitals;
-using Sysme.Service.DTOs.Appointments;
-using Sysme.Domain.Entities.Doctors;
-using Sysme.Domain.Entities.Patients;
-using Sysme.Domain.Entities.Hospitals;
-using Sysme.Domain.Entities.Schedules;
 using Sysme.Domain.Entities.Appointments;
-using Sysme.Service.DTOs.Attachments;
 using Sysme.Domain.Entities.Attachments;
+using Sysme.Domain.Entities.Doctors;
+using Sysme.Domain.Entities.Employees;
+using Sysme.Domain.Entities.Hospitals;
+using Sysme.Domain.Entities.Patients;
+using Sysme.Domain.Entities.Schedules;
+using Sysme.Service.DTOs.Appointments;
+using Sysme.Service.DTOs.Attachments;
+using Sysme.Service.DTOs.Doctors;
+using Sysme.Service.DTOs.Employees;
+using Sysme.Service.DTOs.Hospitals;
+using Sysme.Service.DTOs.Patients;
+using Sysme.Service.DTOs.Schedules;
 
 namespace Sysme.Service.Mappers;
 
@@ -48,6 +46,11 @@ public class MappingProfile : Profile
         CreateMap<ScheduleCreationDto, Schedule>();
 
         //Attachment
-        CreateMap<AttachmentResultDto, Attachment>().ReverseMap();
+        CreateMap<AttachmentResultDto, Attachment>();
+
+        //Employee
+        CreateMap<Employee, EmployeeResultDto>();
+        CreateMap<EmployeeUpdateDto, Employee>();
+        CreateMap<EmployeeCreationDto, Employee>();
     }
 }
