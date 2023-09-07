@@ -13,6 +13,8 @@ using Sysme.Domain.Entities.Patients;
 using Sysme.Domain.Entities.Hospitals;
 using Sysme.Domain.Entities.Schedules;
 using Sysme.Domain.Entities.Appointments;
+using Sysme.Service.DTOs.Attachments;
+using Sysme.Domain.Entities.Attachments;
 
 namespace Sysme.Service.Mappers;
 
@@ -44,5 +46,8 @@ public class MappingProfile : Profile
         CreateMap<Schedule, ScheduleResultDto>();
         CreateMap<ScheduleUpdateDto, Schedule>();
         CreateMap<ScheduleCreationDto, Schedule>();
+
+        //Attachment
+        CreateMap<AttachmentResultDto, Attachment>().ReverseMap();
     }
 }

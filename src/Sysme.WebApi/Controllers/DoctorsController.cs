@@ -31,7 +31,6 @@ public class DoctorsController : BaseController
     public async Task<IActionResult> GetAsync(long id)
         => Ok(new Response { Data = await doctorService.RetrieveByIdAsync(id) });
 
-    [Authorize(Roles = "Admin")]
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAllAsync()
         => Ok(new Response { Data = await doctorService.RetrieveAllAsync() });

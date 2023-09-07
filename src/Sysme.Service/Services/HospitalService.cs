@@ -70,9 +70,9 @@ public class HospitalService : IHospitalService
         return mapper.Map<HospitalResultDto>(existHospital);
     }
 
-    public async Task<HospitalResultDto> UploadImageAsync(long HospitalId, AttachmentCreationDto dto)
+    public async Task<HospitalResultDto> UploadImageAsync(long hospitalId, AttachmentCreationDto dto)
     {
-        var existHospital = await repository.GetAsync(u => u.Id.Equals(HospitalId))
+        var existHospital = await repository.GetAsync(u => u.Id.Equals(hospitalId))
                ?? throw new NotFoundException("This Hospital is not found");
 
         var createdAttachment = await attachmentService.UploadAsync(dto);
@@ -81,9 +81,9 @@ public class HospitalService : IHospitalService
 
         return mapper.Map<HospitalResultDto>(existHospital);
     }
-    public async Task<HospitalResultDto> ModifyImageAsync(long HospitalId, AttachmentCreationDto dto)
+    public async Task<HospitalResultDto> ModifyImageAsync(long hospitalId, AttachmentCreationDto dto)
     {
-        var existHospital = await repository.GetAsync(u => u.Id.Equals(HospitalId), includes: new[] { "Attachment" })
+        var existHospital = await repository.GetAsync(u => u.Id.Equals(hospitalId), includes: new[] { "Attachment" })
               ?? throw new NotFoundException("This Hospital is not found");
 
         await attachmentService.RemoveAsync(existHospital.Attachment);
