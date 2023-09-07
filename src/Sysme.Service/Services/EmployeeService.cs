@@ -8,7 +8,7 @@ using Sysme.Service.Interfaces;
 
 namespace Sysme.Service.Services;
 
-public class PatientService : IPatientService
+public class EmployeeService : IPatientService
 {
     private readonly IRepository<Patient> repository;
     private readonly IMapper mapper;
