@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sysme.Data.IRepositories;
 using Sysme.Domain.Entities.Employees;
 using Sysme.Service.DTOs.Employees;
 using Sysme.Service.Exceptions;
 using Sysme.Service.Interfaces;
-using Sysme.Service.DTOs.Employees;
-using Microsoft.EntityFrameworkCore;
-using Sysme.Domain.Entities.Employees;
 
 namespace Sysme.Service.Services;
 
