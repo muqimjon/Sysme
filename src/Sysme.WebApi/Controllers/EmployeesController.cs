@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Employees;
-using Sysme.Service.Interfaces;
 using Sysme.WebApi.Controllers.Commons;
 using Sysme.WebApi.Models;
 

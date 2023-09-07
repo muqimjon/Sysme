@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Sysme.Service.Interfaces;
 
-namespace Sysme.Service.Interfaces
+public class IEmployeeService
 {
-    internal class IEmployeeService
-    {
-    }
+
 }

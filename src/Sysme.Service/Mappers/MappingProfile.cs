@@ -2,12 +2,14 @@ using AutoMapper;
 using Sysme.Domain.Entities.Appointments;
 using Sysme.Domain.Entities.Attachments;
 using Sysme.Domain.Entities.Doctors;
+using Sysme.Domain.Entities.Employees;
 using Sysme.Domain.Entities.Hospitals;
 using Sysme.Domain.Entities.Patients;
 using Sysme.Domain.Entities.Schedules;
 using Sysme.Service.DTOs.Appointments;
 using Sysme.Service.DTOs.Attachments;
 using Sysme.Service.DTOs.Doctors;
+using Sysme.Service.DTOs.Employees;
 using Sysme.Service.DTOs.Hospitals;
 using Sysme.Service.DTOs.Patients;
 using Sysme.Service.DTOs.Schedules;
@@ -45,5 +47,10 @@ public class MappingProfile : Profile
 
         //Attachment
         CreateMap<AttachmentResultDto, Attachment>().ReverseMap();
+
+        //Employee
+        CreateMap<Employee, EmployeeResultDto>();
+        CreateMap<EmployeeUpdateDto, Employee>();
+        CreateMap<EmployeeCreationDto, Employee>();
     }
 }

@@ -1,69 +1,69 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Sysme.Data.IRepositories;
-using Sysme.Domain.Entities.Patients;
-using Sysme.Service.DTOs.Patients;
 using Sysme.Service.Exceptions;
 using Sysme.Service.Interfaces;
+using Sysme.Service.DTOs.Employees;
+using Microsoft.EntityFrameworkCore;
+using Sysme.Domain.Entities.Employees;
 
 namespace Sysme.Service.Services;
 
-public class EmployeeService : IPatientService
+public class EmployeeService : IEmployeeService
 {
-    private readonly IRepository<Patient> repository;
+    private readonly IRepository<Employee> repository;
     private readonly IMapper mapper;
-    public PatientService(IRepository<Patient> repository, IMapper mapper)
+    public EmployeeService(IRepository<Employee> repository, IMapper mapper)
     {
         this.repository = repository;
         this.mapper = mapper;
     }
-    public async Task<PatientResultDto> AddAsync(PatientCreationDto dto)
+    public async Task<EmployeeResultDto> AddAsync(EmployeeCreationDto dto)
     {
-        var existPatient = await repository.GetAsync(h => h.Phone == dto.Phone);
-        if (existPatient is not null)
-            throw new AlreadyExistException("This Patient already exist");
+        var existEmployee = await repository.GetAsync(h => h.Phone == dto.Phone);
+        if (existEmployee is not null)
+            throw new AlreadyExistException("This Employee already exist");
 
-        var mappedPatient = mapper.Map<Patient>(dto);
-        await repository.CreateAsync(mappedPatient);
+        var mappedEmployee = mapper.Map<Employee>(dto);
+        await repository.CreateAsync(mappedEmployee);
         await repository.SaveChanges();
 
-        return mapper.Map<PatientResultDto>(mappedPatient);
+        return mapper.Map<EmployeeResultDto>(mappedEmployee);
     }
 
     public async Task<bool> RemoveByIdAsync(long id)
     {
-        var existPatient = await repository.GetAsync(h => h.Id.Equals(id))
-            ?? throw new NotFoundException("This Patient not found");
+        var existEmployee = await repository.GetAsync(h => h.Id.Equals(id))
+            ?? throw new NotFoundException("This Employee not found");
 
-        repository.Delete(existPatient);
+        repository.Delete(existEmployee);
         await repository.SaveChanges();
 
         return true;
     }
 
-    public async Task<IEnumerable<PatientResultDto>> RetrieveAllAsync()
+    public async Task<IEnumerable<EmployeeResultDto>> RetrieveAllAsync()
     {
-        var allPatients = await repository.GetAll().ToListAsync();
-        return mapper.Map<IEnumerable<PatientResultDto>>(allPatients);
+        var allEmployees = await repository.GetAll().ToListAsync();
+        return mapper.Map<IEnumerable<EmployeeResultDto>>(allEmployees);
     }
 
-    public async Task<PatientResultDto> RetrieveByIdAsync(long id)
+    public async Task<EmployeeResultDto> RetrieveByIdAsync(long id)
     {
-        var existPatient = await repository.GetAsync(h => h.Id.Equals(id))
-            ?? throw new NotFoundException("This Patient not found");
+        var existEmployee = await repository.GetAsync(h => h.Id.Equals(id))
+            ?? throw new NotFoundException("This Employee not found");
 
-        return mapper.Map<PatientResultDto>(existPatient);
+        return mapper.Map<EmployeeResultDto>(existEmployee);
     }
 
-    public async Task<PatientResultDto> ModifyAsync(PatientUpdateDto dto)
+    public async Task<EmployeeResultDto> ModifyAsync(EmployeeUpdateDto dto)
     {
-        var existPatient = await repository.GetAsync(h => h.Id.Equals(dto.Id))
-            ?? throw new NotFoundException("This Patient not found");
+        var existEmployee = await repository.GetAsync(h => h.Id.Equals(dto.Id))
+            ?? throw new NotFoundException("This Employee not found");
 
-        mapper.Map(dto, existPatient);
-        repository.Update(existPatient);
+        mapper.Map(dto, existEmployee);
+        repository.Update(existEmployee);
         await repository.SaveChanges();
 
-        return mapper.Map<PatientResultDto>(existPatient);
+        return mapper.Map<EmployeeResultDto>(existEmployee);
     }
 }
