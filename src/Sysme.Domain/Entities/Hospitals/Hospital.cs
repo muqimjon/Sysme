@@ -7,11 +7,11 @@ namespace Sysme.Domain.Entities.Hospitals;
 
 public class Hospital : AudiTable
 {
-    public string Name { get; set; }
-    public string Address { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
 
     [JsonIgnore]
-    public ICollection<Patient> Patients { get; set; }
+    public ICollection<Patient> Patients { get; set; } = default!;
     [JsonIgnore]
-    public ICollection<Doctor> Doctors { get; set; }
+    public ICollection<Doctor> Doctors { get; set; } = default!;
 }

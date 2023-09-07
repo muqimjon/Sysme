@@ -9,15 +9,15 @@ namespace Sysme.Domain.Entities.Doctors;
 
 public class Doctor : AudiTable
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Specialty { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Specialty { get; set; } = string.Empty;
     public Gender Gender { get; set; }
     public long HospitalId { get; set; }
-    public Hospital Hospital { get; set; }
+    public Hospital Hospital { get; set; } = default!;
 
     [JsonIgnore]
-    public ICollection<Appointment> Appointments { get; set; }
+    public ICollection<Appointment> Appointments { get; set; } = default!;
     [JsonIgnore]
-    public ICollection<Schedule> Schedules { get; set; }
+    public ICollection<Schedule> Schedules { get; set; } = default!;
 }
