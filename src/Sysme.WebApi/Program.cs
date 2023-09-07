@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Sysme.Data.Contexts;
 using Sysme.Service.Helpers;
+using Sysme.Web.Middleware;
 using Sysme.WebApi.Extensions;
 using System;
 
