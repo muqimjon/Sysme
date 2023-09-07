@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sysme.Domain.Entities.Appointments;
 using Sysme.Domain.Entities.Doctors;
+using Sysme.Domain.Entities.Employees;
 using Sysme.Domain.Entities.Hospitals;
 using Sysme.Domain.Entities.Patients;
 using Sysme.Domain.Entities.Schedules;
@@ -18,6 +19,7 @@ public class AppDbContext : DbContext
     public DbSet<Hospital> Hospitals { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
     public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<Employee> Employees { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
