@@ -1,9 +1,14 @@
 ﻿using AutoMapper;
-using Sysme.Domain.Entities.Appointments;
+using Sysme.Service.DTOs.Doctors;
+using Sysme.Service.DTOs.Patients;
+using Sysme.Service.DTOs.Schedules;
+using Sysme.Service.DTOs.Hospitals;
 using Sysme.Domain.Entities.Doctors;
-using Sysme.Domain.Entities.Hospitals;
 using Sysme.Domain.Entities.Patients;
+using Sysme.Domain.Entities.Hospitals;
 using Sysme.Domain.Entities.Schedules;
+using Sysme.Service.DTOs.Appointments;
+using Sysme.Domain.Entities.Appointments;
 
 namespace Sysme.Service.Mappers;
 
@@ -12,28 +17,28 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         //Appointment
-        CreateMap<Appointment, AppointmentCreationDto>().ReverseMap();
-        CreateMap<AppointmentUpdateDto, Appointment>().ReverseMap();
-        CreateMap<AppointmentResultDto, Appointment>().ReverseMap();
+        CreateMap<Appointment, AppointmentResultDto>();
+        CreateMap<AppointmentUpdateDto, Appointment>();
+        CreateMap<AppointmentCreationDto, Appointment>();
 
         //Doctor
-        CreateMap<Doctor, DoctorCreationDto>().ReverseMap();
-        CreateMap<DoctorUpdateDto, Doctor>().ReverseMap();
-        CreateMap<DoctorResultDto, Doctor>().ReverseMap();
+        CreateMap<Doctor, DoctorResultDto>();
+        CreateMap<DoctorUpdateDto, Doctor>();
+        CreateMap<DoctorCreationDto, Doctor>();
 
         //Hospital
-        CreateMap<Hospital, HospitalCreationDto>.ReverseMap();
-        CreateMap<HospitalUpdateDto, Hospital>.ReverseMap();
-        CreateMap<HospitalResultDto, Hospital>.ReverseMap();
+        CreateMap<Hospital, HospitalResultDto>();
+        CreateMap<HospitalUpdateDto, Hospital>();
+        CreateMap<HospitalCreationDto, Hospital>();
 
         //Patient
-        CreateMap<Patient, PatientCreationDto>.ReverseMap();
-        CreateMap<PatientUpdateDto, Patient>.ReverseMap();
-        CreateMap<PatientResultDto, Patient>.ReverseMap();
+        CreateMap<Patient, PatientResultDto>();
+        CreateMap<PatientUpdateDto, Patient>();
+        CreateMap<PatientCreationDto, Patient>();
 
         //Schedule
-        CreateMap<Schedule, ScheduleCreationDto>.ReverseMap();
-        CreateMap<ScheduleUpdateDto, Schedule>.ReverseMap();
-        CreateMap<ScheduleResultDto, Schedule>.ReverseMap();
+        CreateMap<Schedule, ScheduleResultDto>();
+        CreateMap<ScheduleUpdateDto, Schedule>();
+        CreateMap<ScheduleCreationDto, Schedule>();
     }
 }
