@@ -21,6 +21,7 @@ public static class ServiceCollection
         services.AddScoped<IAppointmentService, AppointmentService>();
         services.AddScoped<IScheduleService, ScheduleService>();
         services.AddScoped<IAttachmentService, AttachmentService>();
+        services.AddScoped<IEmployeeService, EmployeeService>();
         services.AddAutoMapper(typeof(MappingProfile));
     }
 
