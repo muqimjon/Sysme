@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sysme.Domain.Entities.Attachments;
+using Sysme.Service.DTOs.Attachments;
 
-namespace Sysme.Service.Interfaces
+namespace Sysme.Service.Interfaces;
+
+public interface IAttachmentService
 {
-    internal class IAttachmentService
-    {
-    }
+    Task<Attachment> UploadAsync(AttachmentCreationDto dto);
+    Task<bool> RemoveAsync(Attachment attachment);
 }

@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Logs\" />
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
   <ItemGroup>
