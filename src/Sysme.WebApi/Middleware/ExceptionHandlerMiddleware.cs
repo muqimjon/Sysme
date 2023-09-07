@@ -20,6 +20,7 @@ public class ExceptionHandlerMiddleware
         {
             await request.Invoke(context);
         }
+
         catch (NotFoundException ex)
         {
             await context.Response.WriteAsJsonAsync(new Response
@@ -28,6 +29,7 @@ public class ExceptionHandlerMiddleware
                 Message = ex.Message,
             });
         }
+
         catch (AlreadyExistException ex)
         {
             await context.Response.WriteAsJsonAsync(new Response
@@ -36,6 +38,7 @@ public class ExceptionHandlerMiddleware
                 Message = ex.Message,
             });
         }
+
         catch (Exception ex)
         {
             await context.Response.WriteAsJsonAsync(new Response
