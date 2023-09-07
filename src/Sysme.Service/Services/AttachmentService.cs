@@ -1,22 +1,49 @@
-﻿using Sysme.Domain.Entities.Attachments;
+﻿using Sysme.Data.IRepositories;
+using Sysme.Domain.Entities.Attachments;
 using Sysme.Service.DTOs.Attachments;
+using Sysme.Service.Extensions;
+using Sysme.Service.Helpers;
 using Sysme.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sysme.Service.Services;
 
 public class AttachmentService : IAttachmentService
 {
-    public Task<Attachment> UploadAsync(AttachmentCreationDto dto)
+    private readonly IRepository<Attachment> repository;
+    public AttachmentService(IRepository<Attachment> repository)
     {
-        throw new NotImplementedException();
+        this.repository = repository;
     }
-    public Task<bool> RemoveAsync(Attachment attachment)
+    public async Task<Attachment> UploadAsync(AttachmentCreationDto dto)
     {
-        throw new NotImplementedException();
+        var webrootPath = Path.Combine(PathHelper.WebRootPath, "Files");
+
+        if (!Directory.Exists(webrootPath))
+            Directory.CreateDirectory(webrootPath);
+
+        var fileExtension = Path.GetExtension(dto.FormFile.FileName);
+        var fileName = $"{Guid.NewGuid().ToString("N")} {fileExtension}";
+        var fullPath = Path.Combine(webrootPath, fileName);
+
+        var fileStream = new FileStream(fullPath, FileMode.OpenOrCreate);
+        await fileStream.WriteAsync(dto.FormFile.ToByte());
+
+        var createdAttachment = new Attachment
+        {
+            FileName = fileName,
+            FilePath = fullPath,
+        };
+
+        await repository.CreateAsync(createdAttachment);
+        await repository.SaveChanges();
+
+        return createdAttachment;
     }
+    public async Task<bool> RemoveAsync(Attachment attachment)
+    {
+        repository.Delete(attachment);
+        await repository.SaveChanges();
+        return true;
+    }
+
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Sysme.Service.Helpers;
 
-namespace Sysme.Service.Helpers
+public class PathHelper
 {
-    internal class PathHelper
-    {
-    }
+    public static string WebRootPath { get; set; }
 }

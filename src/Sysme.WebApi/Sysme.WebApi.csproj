@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Sysme.Data\Sysme.Data.csproj" />
     <ProjectReference Include="..\Sysme.Service\Sysme.Service.csproj" />
+    <ProjectReference Include="..\Sysme.Web\Sysme.Web.csproj" />
   </ItemGroup>
 
 </Project>
