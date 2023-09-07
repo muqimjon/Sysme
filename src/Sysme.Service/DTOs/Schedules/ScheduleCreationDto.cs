@@ -1,11 +1,4 @@
-﻿using Sysme.Domain.Entities.Doctors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sysme.Service.DTOs.Schedules;
+﻿namespace Sysme.Service.DTOs.Schedules;
 
 public class ScheduleCreationDto
 {

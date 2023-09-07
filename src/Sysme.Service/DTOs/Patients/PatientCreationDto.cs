@@ -1,9 +1,4 @@
 ﻿using Sysme.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sysme.Service.DTOs.Patients;
 
