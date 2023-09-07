@@ -15,6 +15,8 @@ public static class ServiceCollection
     public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IEmployeeService, EmployeeService>();
         services.AddScoped<IDoctorService, DoctorService>();
         services.AddScoped<IHospitalService, HospitalService>();
         services.AddScoped<IPatientService, PatientService>();
