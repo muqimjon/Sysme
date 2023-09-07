@@ -33,7 +33,7 @@ public class HospitalService : IHospitalService
         return mapper.Map<HospitalResultDto>(mappedHospital);
     }
 
-    public async Task<bool> DeleteAsync(long id)
+    public async Task<bool> RemoveByIdAsync(long id)
     {
         var existHospital = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This hospital not found");

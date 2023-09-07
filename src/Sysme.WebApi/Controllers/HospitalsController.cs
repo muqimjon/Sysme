@@ -36,7 +36,6 @@ public class HospitalsController : BaseController
     public async Task<IActionResult> GetAllAsync()
         => Ok(new Response { Data = await HospitalService.RetrieveAllAsync() });
 
-
     [HttpPost("upload-photo")]
     public async Task<IActionResult> UploadImage(long id, [FromForm] AttachmentCreationDto dto)
         => Ok(new Response { Data = await HospitalService.UploadImageAsync(id, dto) });
