@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Doctors;
 using Sysme.Service.Interfaces;
 using Sysme.Web.Models;

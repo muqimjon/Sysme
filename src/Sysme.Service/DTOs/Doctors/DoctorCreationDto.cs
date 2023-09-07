@@ -1,10 +1,4 @@
-﻿using Sysme.Domain.Entities.Hospitals;
-using Sysme.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sysme.Domain.Enums;
 
 namespace Sysme.Service.DTOs.Doctors;
 

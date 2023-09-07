@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Sysme.Data.Contexts;
 using Sysme.Service.Helpers;
 using Sysme.WebApi.Extensions;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 

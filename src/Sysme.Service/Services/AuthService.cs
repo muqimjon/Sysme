@@ -27,7 +27,7 @@ public class AuthService : IAuthService
             ?? throw new NotFoundException("Not found!");
 
         bool varifiedPassword = PasswordHasher.Verify(password, employee.Password);
-        if(!varifiedPassword)
+        if (!varifiedPassword)
             throw new NotFoundException($"{email} is not valid or {password}.");
 
         var tokenHandler = new JwtSecurityTokenHandler();

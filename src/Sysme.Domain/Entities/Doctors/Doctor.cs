@@ -16,7 +16,7 @@ public class Doctor : AudiTable
     public string Phone { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public Gender Gender { get; set; }
-    
+
     public long HospitalId { get; set; }
     public Hospital Hospital { get; set; } = default!;
 

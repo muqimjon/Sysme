@@ -22,6 +22,12 @@ public class Repository<T> : IRepository<T> where T : AudiTable
         await dbSet.AddAsync(entity);
     }
 
+    public void Update(T entity)
+    {
+        entity.UpdatedAt = DateTime.UtcNow;
+        appDbContext.Entry(entity).State = EntityState.Modified;
+    }
+
     public void Delete(T entity)
     {
         entity.IsDelete = true;
@@ -35,14 +41,12 @@ public class Repository<T> : IRepository<T> where T : AudiTable
     public IQueryable<T> GetAll(Expression<Func<T, bool>> expression = null, bool isNoTracked = true, string[] includes = null)
     {
         IQueryable<T> query = expression is null ? dbSet.AsQueryable() : dbSet.Where(expression).AsQueryable();
-
         query = isNoTracked ? query.AsNoTracking() : query;
 
         if (includes is not null)
             foreach (var item in includes)
-            {
                 query = query.Include(item);
-            }
+
         return query;
     }
 
@@ -52,22 +56,13 @@ public class Repository<T> : IRepository<T> where T : AudiTable
 
         if (includes is not null)
             foreach (var item in includes)
-            {
                 query = query.Include(item);
-            }
 
-        var entity = await query.FirstOrDefaultAsync(expression);
-        return entity;
+        return await query.FirstOrDefaultAsync(expression);
     }
 
     public async Task SaveChanges()
     {
         await appDbContext.SaveChangesAsync();
-    }
-
-    public void Update(T entity)
-    {
-        entity.UpdatedAt = DateTime.UtcNow;
-        appDbContext.Entry(entity).State = EntityState.Modified;
     }
 }
