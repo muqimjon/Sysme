@@ -10,6 +10,6 @@ public interface IHospitalService
     Task<bool> RemoveByIdAsync(long id);
     Task<HospitalResultDto> RetrieveByIdAsync(long id);
     Task<IEnumerable<HospitalResultDto>> RetrieveAllAsync();
-    Task<HospitalResultDto> UploadImageAsync(long HospitalId, AttachmentCreationDto dto);
-    Task<HospitalResultDto> ModifyImageAsync(long HospitalId, AttachmentCreationDto dto);
+    Task<HospitalResultDto> UploadImageAsync(long hospitalId, AttachmentCreationDto dto);
+    Task<HospitalResultDto> ModifyImageAsync(long hospitalId, AttachmentCreationDto dto);
 }

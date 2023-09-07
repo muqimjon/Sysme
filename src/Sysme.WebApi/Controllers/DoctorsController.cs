@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Sysme.Service.DTOs.Doctors;
 using Sysme.Service.Interfaces;
 using Sysme.Web.Models;
 using Sysme.WebApi.Controllers.Commons;
@@ -8,19 +9,19 @@ namespace Sysme.WebApi.Controllers;
 
 public class DoctorsController : BaseController
 {
-    private readonly IDoctorService octorService;
-    public DoctorsController(IDoctorService octorService)
+    private readonly IDoctorService doctorService;
+    public DoctorsController(IDoctorService doctorService)
     {
-        this.octorService = octorService;
+        this.doctorService = doctorService;
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> PostAsync(UserCreationDto dto)
+    public async Task<IActionResult> PostAsync(DoctorCreationDto dto)
        => Ok(new Response
        {
            StatusCode = 200,
            Message = "Success",
-           Data = await userService.AddAsync(dto)
+           Data = await doctorService.AddAsync(dto)
        });
 
     [HttpDelete("delete/{id:long}")]
@@ -29,16 +30,16 @@ public class DoctorsController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await userService.DeleteAsync(id)
+            Data = await doctorService.RemoveByIdAsync(id)
         });
 
     [HttpPut("update")]
-    public async Task<IActionResult> UpdateAsync(UserUpdateDto dto)
+    public async Task<IActionResult> UpdateAsync(DoctorUpdateDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await userService.UpdateAsync(dto)
+            Data = await doctorService.ModifyAsync(dto)
         });
 
     [HttpGet("get/{id:long}")]
@@ -47,17 +48,15 @@ public class DoctorsController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await userService.GetAsync(id)
+            Data = await doctorService.RetrieveByIdAsync(id)
         });
 
-    [Authorize(Roles = "Admin")]
     [HttpGet("get-all")]
-    public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
+    public async Task<IActionResult> GetAllAsync()
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await userService.GetAllAsync(@params)
+            Data = await doctorService.RetrieveAllAsync()
         });
-
 }
