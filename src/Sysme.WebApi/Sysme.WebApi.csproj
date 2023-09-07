@@ -17,10 +17,12 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sysme.Data\Sysme.Data.csproj" />
+    <ProjectReference Include="..\Sysme.Service\Sysme.Service.csproj" />
   </ItemGroup>
 
 </Project>
