@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using Sysme.Data.Contexts;
 using Sysme.Service.Helpers;
 using Sysme.Web.Middleware;
@@ -10,7 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => c.MapType<TimeSpan>(() => new OpenApiSchema
+{
+    Type = "string",
+    Example = new OpenApiString("00:00:00")
+}));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -20,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddServices();
 
 PathHelper.WebRootPath = Path.GetFullPath("wwwroot");
+
 
 var app = builder.Build();
 
