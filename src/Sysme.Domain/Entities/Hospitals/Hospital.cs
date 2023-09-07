@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sysme.Domain.Commons;
+using Sysme.Domain.Entities.Doctors;
+using Sysme.Domain.Entities.Patients;
+using System.Text.Json.Serialization;
 
-namespace Sysme.Domain.Entities.Hospitals
+namespace Sysme.Domain.Entities.Hospitals;
+
+public class Hospital : AudiTable
 {
-    internal class Hospital
-    {
-    }
+    public string Name { get; set; }
+    public string Address { get; set; }
+
+    [JsonIgnore]
+    public ICollection<Patient> Patients { get; set; }
+    [JsonIgnore]
+    public ICollection<Doctor> Doctors { get; set; }
 }

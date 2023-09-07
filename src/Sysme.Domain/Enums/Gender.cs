@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Sysme.Domain.Enums;
 
-namespace Sysme.Domain.Enums
+public enum Gender
 {
-    internal class Gender
-    {
-    }
+    Male, 
+    Female
 }
