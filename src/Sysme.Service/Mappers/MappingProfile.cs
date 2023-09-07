@@ -1,13 +1,17 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Sysme.Service.DTOs.Doctors;
+using Sysme.Service.DTOs.Doctors;
+using Sysme.Service.DTOs.Patients;
 using Sysme.Service.DTOs.Patients;
 using Sysme.Service.DTOs.Schedules;
 using Sysme.Service.DTOs.Hospitals;
+using Sysme.Service.DTOs.Schedules;
+using Sysme.Service.DTOs.Hospitals;
+using Sysme.Service.DTOs.Appointments;
 using Sysme.Domain.Entities.Doctors;
 using Sysme.Domain.Entities.Patients;
 using Sysme.Domain.Entities.Hospitals;
 using Sysme.Domain.Entities.Schedules;
-using Sysme.Service.DTOs.Appointments;
 using Sysme.Domain.Entities.Appointments;
 
 namespace Sysme.Service.Mappers;
