@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Doctors;
 using Sysme.Service.Interfaces;
-using Sysme.Web.Models;
 using Sysme.WebApi.Controllers.Commons;
+using Sysme.WebApi.Models;
 
 namespace Sysme.WebApi.Controllers;
 
