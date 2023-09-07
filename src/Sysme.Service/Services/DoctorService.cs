@@ -5,6 +5,7 @@ using Sysme.Domain.Entities.Doctors;
 using Sysme.Domain.Entities.Hospitals;
 using Sysme.Service.DTOs.Doctors;
 using Sysme.Service.Exceptions;
+using Sysme.Service.Helpers;
 using Sysme.Service.Interfaces;
 
 namespace Sysme.Service.Services;
@@ -22,9 +23,15 @@ public class DoctorService : IDoctorService
     }
     public async Task<DoctorResultDto> AddAsync(DoctorCreationDto dto)
     {
+        var existDocotor = await repository.GetAsync(x => x.Phone.Equals(dto.Phone));
+        if (existDocotor is not null)
+            throw new AlreadyExistException("This doctor is already exist!");
+
         var existHospital = await hospitalRepository.GetAsync(h => h.Id.Equals(dto.HospitalId))
             ?? throw new NotFoundException("This hospital not found");
+
         var mappedDoctor = mapper.Map<Doctor>(dto);
+        mappedDoctor.Password = PasswordHasher.Hash(dto.Password);
         mappedDoctor.Hospital = existHospital;
         await repository.CreateAsync(mappedDoctor);
         await repository.SaveChanges();

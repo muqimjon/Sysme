@@ -9,6 +9,8 @@ public class DoctorResultDto
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Specialty { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
     public Gender Gender { get; set; }
     public HospitalResultDto Hospital { get; set; } = default!;
 }
