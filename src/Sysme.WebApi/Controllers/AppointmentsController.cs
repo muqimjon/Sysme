@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Sysme.Service.DTOs.Appointments;
+﻿using Sysme.WebApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.Interfaces;
+using Sysme.Service.DTOs.Appointments;
 using Sysme.WebApi.Controllers.Commons;
-using Sysme.WebApi.Models;
 
 namespace Sysme.WebApi.Controllers;
 

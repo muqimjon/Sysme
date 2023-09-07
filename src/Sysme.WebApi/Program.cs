@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Microsoft.Extensions.Options;
 using Sysme.Data.Contexts;
 using Sysme.Service.Helpers;
 using Sysme.Web.Middleware;
 using Sysme.WebApi.Extensions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +19,16 @@ builder.Services.ConfigureSwagger();
 
 //AppDbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
+/*builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+});*/
+
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
+, b => b.MigrationsAssembly("Sysme.Data")));
+
 
 //Logger
 var logger = new LoggerConfiguration()
