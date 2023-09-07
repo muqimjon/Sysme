@@ -4,6 +4,7 @@ using Sysme.Data.IRepositories;
 using Sysme.Domain.Entities.Employees;
 using Sysme.Service.DTOs.Employees;
 using Sysme.Service.Exceptions;
+using Sysme.Service.Helpers;
 using Sysme.Service.Interfaces;
 
 namespace Sysme.Service.Services;
@@ -24,6 +25,7 @@ public class EmployeeService : IEmployeeService
             throw new AlreadyExistException("This Employee already exist");
 
         var mappedEmployee = mapper.Map<Employee>(dto);
+        mappedEmployee.Password = PasswordHasher.Hash(dto.Password);
         await repository.CreateAsync(mappedEmployee);
         await repository.SaveChanges();
 

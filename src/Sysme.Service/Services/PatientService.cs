@@ -4,6 +4,7 @@ using Sysme.Data.IRepositories;
 using Sysme.Domain.Entities.Patients;
 using Sysme.Service.DTOs.Patients;
 using Sysme.Service.Exceptions;
+using Sysme.Service.Helpers;
 using Sysme.Service.Interfaces;
 
 namespace Sysme.Service.Services;
@@ -24,6 +25,7 @@ public class PatientService : IPatientService
             throw new AlreadyExistException("This Patient already exist");
 
         var mappedPatient = mapper.Map<Patient>(dto);
+        mappedPatient.Password = PasswordHasher.Hash(dto.Password);
         await repository.CreateAsync(mappedPatient);
         await repository.SaveChanges();
 
