@@ -10,9 +10,9 @@ namespace Sysme.WebApi.Controllers;
 public class DoctorsController : BaseController
 {
     private readonly IDoctorService doctorService;
-    public DoctorsController(IDoctorService octorService)
+    public DoctorsController(IDoctorService doctorService)
     {
-        this.doctorService = octorService;
+        this.doctorService = doctorService;
     }
 
     [HttpPost("create")]
