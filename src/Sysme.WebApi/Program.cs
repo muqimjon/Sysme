@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using Microsoft.Extensions.Options;
 using Sysme.Data.Contexts;
 using Sysme.Service.Helpers;
@@ -14,6 +15,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureSwagger();
+
+//AppDbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
 /*builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -25,7 +30,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 , b => b.MigrationsAssembly("Sysme.Data")));
 
 
+//Logger
+var logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(builder.Configuration)
+        .Enrich.FromLogContext()
+        .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
+//Service | Repository | AutoMapper
 builder.Services.AddServices();
+
+//JWT
+builder.Services.AddJwt(builder.Configuration);
 
 PathHelper.WebRootPath = Path.GetFullPath("wwwroot");
 

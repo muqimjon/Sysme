@@ -12,6 +12,7 @@ namespace Sysme.Service.Services;
 
 public class AppointmentService : IAppointmentService
 {
+
     private readonly IRepository<Appointment> repository;
     private readonly IRepository<Doctor> doctorRepository;
     private readonly IRepository<Patient> patientRepository;
