@@ -32,7 +32,7 @@ public class ExceptionHandlerMiddleware
         {
             await context.Response.WriteAsJsonAsync(new Response
             {
-                StatusCode = 403,
+                StatusCode = ex.StatusCode,
                 Message = ex.Message,
             });
         }
