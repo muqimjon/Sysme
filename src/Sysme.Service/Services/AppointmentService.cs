@@ -39,7 +39,7 @@ public class AppointmentService : IAppointmentService
         return mapper.Map<AppointmentResultDto>(mappedAppointment);
     }
 
-    public async Task<bool> DeleteAsync(long id)
+    public async Task<bool> RemoveByIdAsync(long id)
     {
         var existAppointment = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Appointment not found");
@@ -50,13 +50,13 @@ public class AppointmentService : IAppointmentService
         return true;
     }
 
-    public async Task<IEnumerable<AppointmentResultDto>> GetAllAsync()
+    public async Task<IEnumerable<AppointmentResultDto>> RetrieveAllAsync()
     {
         var allAppointments = await repository.GetAll().ToListAsync();
         return mapper.Map<IEnumerable<AppointmentResultDto>>(allAppointments);
     }
 
-    public async Task<AppointmentResultDto> GetAsync(long id)
+    public async Task<AppointmentResultDto> RetrieveByIdAsync(long id)
     {
         var existAppointment = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Appointment not found");
@@ -64,7 +64,7 @@ public class AppointmentService : IAppointmentService
         return mapper.Map<AppointmentResultDto>(existAppointment);
     }
 
-    public async Task<AppointmentResultDto> UpdateAsync(AppointmentUpdateDto dto)
+    public async Task<AppointmentResultDto> ModifyAsync(AppointmentUpdateDto dto)
     {
         var existAppointment = await repository.GetAsync(h => h.Id.Equals(dto.Id))
             ?? throw new NotFoundException("This Appointment not found");

@@ -5,8 +5,8 @@ namespace Sysme.Service.Interfaces;
 public interface IPatientService
 {
     Task<PatientResultDto> AddAsync(PatientCreationDto dto);
-    Task<PatientResultDto> UpdateAsync(PatientUpdateDto dto);
-    Task<bool> DeleteAsync(long id);
-    Task<PatientResultDto> GetAsync(long id);
-    Task<IEnumerable<PatientResultDto>> GetAllAsync();
+    Task<PatientResultDto> ModifyAsync(PatientUpdateDto dto);
+    Task<bool> RemoveByIdAsync(long id);
+    Task<PatientResultDto> RetrieveByIdAsync(long id);
+    Task<IEnumerable<PatientResultDto>> RetrieveAllAsync();
 }

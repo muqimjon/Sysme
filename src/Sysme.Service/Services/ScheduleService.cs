@@ -32,7 +32,7 @@ public class ScheduleService : IScheduleService
         return mapper.Map<ScheduleResultDto>(mappedSchedule);
     }
 
-    public async Task<bool> DeleteAsync(long id)
+    public async Task<bool> RemoveByIdAsync(long id)
     {
         var existSchedule = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Schedule not found");
@@ -43,13 +43,13 @@ public class ScheduleService : IScheduleService
         return true;
     }
 
-    public async Task<IEnumerable<ScheduleResultDto>> GetAllAsync()
+    public async Task<IEnumerable<ScheduleResultDto>> RetrieveAllAsync()
     {
         var allSchedules = await repository.GetAll().ToListAsync();
         return mapper.Map<IEnumerable<ScheduleResultDto>>(allSchedules);
     }
 
-    public async Task<ScheduleResultDto> GetAsync(long id)
+    public async Task<ScheduleResultDto> RetrieveByIdAsync(long id)
     {
         var existSchedule = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Schedule not found");
@@ -57,7 +57,7 @@ public class ScheduleService : IScheduleService
         return mapper.Map<ScheduleResultDto>(existSchedule);
     }
 
-    public async Task<ScheduleResultDto> UpdateAsync(ScheduleUpdateDto dto)
+    public async Task<ScheduleResultDto> ModifyAsync(ScheduleUpdateDto dto)
     {
         var existSchedule = await repository.GetAsync(h => h.Id.Equals(dto.Id))
             ?? throw new NotFoundException("This Schedule not found");

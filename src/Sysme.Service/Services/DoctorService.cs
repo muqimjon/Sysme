@@ -32,7 +32,7 @@ public class DoctorService : IDoctorService
         return mapper.Map<DoctorResultDto>(mappedDoctor);
     }
 
-    public async Task<bool> DeleteAsync(long id)
+    public async Task<bool> RemoveByIdAsync(long id)
     {
         var existDoctor = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Doctor not found");
@@ -43,13 +43,13 @@ public class DoctorService : IDoctorService
         return true;
     }
 
-    public async Task<IEnumerable<DoctorResultDto>> GetAllAsync()
+    public async Task<IEnumerable<DoctorResultDto>> RetrieveAllAsync()
     {
         var allDoctors = await repository.GetAll().ToListAsync();
         return mapper.Map<IEnumerable<DoctorResultDto>>(allDoctors);
     }
 
-    public async Task<DoctorResultDto> GetAsync(long id)
+    public async Task<DoctorResultDto> RetrieveByIdAsync(long id)
     {
         var existDoctor = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Doctor not found");
@@ -57,7 +57,7 @@ public class DoctorService : IDoctorService
         return mapper.Map<DoctorResultDto>(existDoctor);
     }
 
-    public async Task<DoctorResultDto> UpdateAsync(DoctorUpdateDto dto)
+    public async Task<DoctorResultDto> ModifyAsync(DoctorUpdateDto dto)
     {
         var existDoctor = await repository.GetAsync(h => h.Id.Equals(dto.Id))
             ?? throw new NotFoundException("This Doctor not found");

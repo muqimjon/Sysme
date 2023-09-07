@@ -30,7 +30,7 @@ public class PatientService : IPatientService
         return mapper.Map<PatientResultDto>(mappedPatient);
     }
 
-    public async Task<bool> DeleteAsync(long id)
+    public async Task<bool> RemoveByIdAsync(long id)
     {
         var existPatient = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Patient not found");
@@ -41,13 +41,13 @@ public class PatientService : IPatientService
         return true;
     }
 
-    public async Task<IEnumerable<PatientResultDto>> GetAllAsync()
+    public async Task<IEnumerable<PatientResultDto>> RetrieveAllAsync()
     {
         var allPatients = await repository.GetAll().ToListAsync();
         return mapper.Map<IEnumerable<PatientResultDto>>(allPatients);
     }
 
-    public async Task<PatientResultDto> GetAsync(long id)
+    public async Task<PatientResultDto> RetrieveByIdAsync(long id)
     {
         var existPatient = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This Patient not found");
@@ -55,7 +55,7 @@ public class PatientService : IPatientService
         return mapper.Map<PatientResultDto>(existPatient);
     }
 
-    public async Task<PatientResultDto> UpdateAsync(PatientUpdateDto dto)
+    public async Task<PatientResultDto> ModifyAsync(PatientUpdateDto dto)
     {
         var existPatient = await repository.GetAsync(h => h.Id.Equals(dto.Id))
             ?? throw new NotFoundException("This Patient not found");

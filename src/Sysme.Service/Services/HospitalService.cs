@@ -44,13 +44,13 @@ public class HospitalService : IHospitalService
         return true;
     }
 
-    public async Task<IEnumerable<HospitalResultDto>> GetAllAsync()
+    public async Task<IEnumerable<HospitalResultDto>> RetrieveAllAsync()
     {
         var allHospitals = await repository.GetAll().ToListAsync();
         return mapper.Map<IEnumerable<HospitalResultDto>>(allHospitals);
     }
 
-    public async Task<HospitalResultDto> GetAsync(long id)
+    public async Task<HospitalResultDto> RetrieveByIdAsync(long id)
     {
         var existHospital = await repository.GetAsync(h => h.Id.Equals(id))
             ?? throw new NotFoundException("This hospital not found");
@@ -58,7 +58,7 @@ public class HospitalService : IHospitalService
         return mapper.Map<HospitalResultDto>(existHospital);
     }
 
-    public async Task<HospitalResultDto> UpdateAsync(HospitalUpdateDto dto)
+    public async Task<HospitalResultDto> ModifyAsync(HospitalUpdateDto dto)
     {
         var existHospital = await repository.GetAsync(h => h.Id.Equals(dto.Id))
             ?? throw new NotFoundException("This hospital not found");
