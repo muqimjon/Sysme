@@ -17,46 +17,21 @@ public class DoctorsController : BaseController
 
     [HttpPost("create")]
     public async Task<IActionResult> PostAsync(DoctorCreationDto dto)
-       => Ok(new Response
-       {
-           StatusCode = 200,
-           Message = "Success",
-           Data = await doctorService.AddAsync(dto)
-       });
+       => Ok(new Response { Data = await doctorService.AddAsync(dto) });
 
     [HttpDelete("delete/{id:long}")]
     public async Task<IActionResult> DeleteAsync(long id)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await doctorService.RemoveByIdAsync(id)
-        });
+        => Ok(new Response { Data = await doctorService.RemoveByIdAsync(id) });
 
     [HttpPut("update")]
     public async Task<IActionResult> UpdateAsync(DoctorUpdateDto dto)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await doctorService.ModifyAsync(dto)
-        });
+        => Ok(new Response { Data = await doctorService.ModifyAsync(dto) });
 
     [HttpGet("get/{id:long}")]
     public async Task<IActionResult> GetAsync(long id)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await doctorService.RetrieveByIdAsync(id)
-        });
+        => Ok(new Response { Data = await doctorService.RetrieveByIdAsync(id) });
 
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAllAsync()
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await doctorService.RetrieveAllAsync()
-        });
+        => Ok(new Response { Data = await doctorService.RetrieveAllAsync() });
 }
