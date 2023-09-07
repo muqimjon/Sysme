@@ -1,7 +1,11 @@
+using Sysme.Service.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+PathHelper.WebRootPath = Path.GetFullPath("wwwroot");
 
 var app = builder.Build();
 
