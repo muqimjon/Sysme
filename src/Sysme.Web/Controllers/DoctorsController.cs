@@ -56,7 +56,7 @@ public class DoctorsController : Controller
 
     public async Task<IActionResult> PlanDoctor(long id)
     {
-        var plan = await _service.GetPlan(id);
+        var plan = await _service.GetPlanAsync(id);
         var doctor = await _service.RetrieveByIdAsync(id);
         return View((doctor, plan));
     }

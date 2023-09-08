@@ -91,8 +91,11 @@ public class DoctorService : IDoctorService
         return mapper.Map<IEnumerable<DoctorResultDto>>(result);
     }
 
-    public async Task<List<Dictionary<string, bool>>> GetPlan(long id)
+    public async Task<List<Dictionary<string, bool>>> GetPlanAsync(long id)
     {
+        var existDoctor = await repository.GetAsync(h => h.Id.Equals(id))
+            ?? throw new NotFoundException("This Doctor not found");
+
         var appointments = appointmentRepository.GetAll(a => a.DoctorId == id && a.AppointmentTime > DateTime.UtcNow).AsEnumerable();
         var doctor = await repository.GetAsync(d => d.Id == id, new[] { "Schedule" });
         var schedules = doctor.Schedules;

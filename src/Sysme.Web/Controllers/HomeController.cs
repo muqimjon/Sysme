@@ -33,6 +33,13 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
     public async Task<IActionResult> Login(string email, string password)
     {
         var checkEmail = email;
