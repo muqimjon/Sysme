@@ -40,7 +40,7 @@ public class AppDbContext : DbContext
             .HasForeignKey(h => h.HospitalId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<Appointment>()
+        modelBuilder.Entity<Doctor>()
             .Property(d => d.Price)
             .HasColumnType("decimal(18,2)");
     }

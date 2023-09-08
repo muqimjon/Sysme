@@ -7,7 +7,6 @@ namespace Sysme.Domain.Entities.Appointments;
 public class Appointment : AudiTable
 {
     public DateTime AppointmentTime { get; set; }
-    public decimal Price { get; set; }
     public string Notes { get; set; } = string.Empty;
 
     public long PatientId { get; set; }

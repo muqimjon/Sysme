@@ -55,12 +55,14 @@
                         <h1>Welcome back Jim</h1>
                     </div>
                     <div class='card-body'>
+                        <form asp-controller="Doctors" asp-action="Search" method="post">
                         <p>
                             <div class="input-group">
-                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <button type="button" class="btn btn-outline-primary">search</button>
+                                <input type="search" id="query" name="query" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <button type="submit" class="btn btn-outline-primary" asp-controller="Doctors" asp-action="Search">search</button>
                             </div>
                         </p>
+                        </form>
                     </div>
                 </div>
             </div>
