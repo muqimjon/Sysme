@@ -1,7 +1,6 @@
-﻿using Sysme.WebApi.Models;
-using Microsoft.AspNetCore.Mvc;
-using Sysme.Service.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Doctors;
+using Sysme.Service.Interfaces;
 using Sysme.WebApi.Controllers.Commons;
 using Sysme.WebApi.Models;
 
@@ -38,4 +37,8 @@ public class DoctorsController : BaseController
     [HttpGet("get/{query}")]
     public async Task<IActionResult> GetByQueryAsync( string query)
         => Ok(new Response { Data = await doctorService.SearchByQuery(query) });
+
+    [HttpGet("get-plan/{id:long}")]
+    public async Task<IActionResult> PlanDoctorAsync(long id)
+        => Ok(new Response { Data = await doctorService.GetPlanAsync(id) });
 }

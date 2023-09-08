@@ -7,5 +7,5 @@ public class ScheduleUpdateDto
     public DayOfWeek DayOfWeek { get; set; }
     public TimeSpan StartTime { get; set; }
     public TimeSpan EndTime { get; set; }
-    public int InspectionTime { get; set; }
+    public TimeSpan InspectionTime { get; set; }
 }

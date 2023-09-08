@@ -8,7 +8,7 @@ public class Schedule : AudiTable
     public TimeSpan EndTime { get; set; }
     public TimeSpan StartTime { get; set; }
     public DayOfWeek DayOfWeek { get; set; }
-    public int InspectionTime { get; set; }
+    public TimeSpan InspectionTime { get; set; }
 
     public long DoctorId { get; set; }
     public Doctor Doctor { get; set; } = default!;

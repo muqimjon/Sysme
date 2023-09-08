@@ -76,4 +76,10 @@ public class AppointmentService : IAppointmentService
 
         return mapper.Map<AppointmentResultDto>(existAppointment);
     }
+
+    public async Task<IEnumerable<AppointmentResultDto>> RetrieveByDoctorIdAsync(long id)
+    {
+        var entities = await repository.GetAll(a => a.DoctorId == id && a.AppointmentTime > DateTime.UtcNow).ToListAsync();
+        return mapper.Map<IEnumerable<AppointmentResultDto>>(entities);
+    }
 }

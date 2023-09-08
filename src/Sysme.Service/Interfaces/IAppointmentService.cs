@@ -9,4 +9,5 @@ public interface IAppointmentService
     Task<bool> RemoveByIdAsync(long id);
     Task<AppointmentResultDto> RetrieveByIdAsync(long id);
     Task<IEnumerable<AppointmentResultDto>> RetrieveAllAsync();
+    Task<IEnumerable<AppointmentResultDto>> RetrieveByDoctorIdAsync(long id);
 }

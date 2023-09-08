@@ -53,4 +53,11 @@ public class DoctorsController : Controller
         await _service.RemoveByIdAsync(id);
         return Redirect("Index");
     }
+
+    public async Task<IActionResult> PlanDoctor(long id)
+    {
+        var plan = await _service.GetPlanAsync(id);
+        var doctor = await _service.RetrieveByIdAsync(id);
+        return View((doctor, plan));
+    }
 }
