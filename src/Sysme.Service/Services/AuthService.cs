@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Sysme.Data.IRepositories;
 using Sysme.Domain.Entities.Employees;
+using Sysme.Domain.Entities.Patients;
 using Sysme.Service.Exceptions;
 using Sysme.Service.Helpers;
 using Sysme.Service.Interfaces;
@@ -14,11 +15,25 @@ namespace Sysme.Service.Services;
 public class AuthService : IAuthService
 {
     private readonly IRepository<Employee> repository;
+    private readonly IRepository<Patient> patientRepository;
     private readonly IConfiguration configuration;
-    public AuthService(IRepository<Employee> repository, IConfiguration configuration)
+    public AuthService(IRepository<Employee> repository, IConfiguration configuration, IRepository<Patient> patientRepository)
     {
         this.repository = repository;
         this.configuration = configuration;
+        this.patientRepository = patientRepository;
+    }
+
+    public async Task<bool> CheckLogin(string email, string password)
+    {
+        var employee = await patientRepository.GetAsync(x => x.Email.Equals(email))
+           ?? throw new NotFoundException("Not found!");
+
+        bool varifiedPassword = PasswordHasher.Verify(password, employee.Password);
+        if (!varifiedPassword)
+            throw new NotFoundException($"{email} is not valid or {password}.");
+
+        return varifiedPassword;
     }
 
     public async Task<string> GenerateTokenAsync(string email, string password)
