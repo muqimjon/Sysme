@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Sysme.Data.IRepositories;
 using Sysme.Domain.Entities.Patients;
 using Sysme.Service.DTOs.Patients;
@@ -39,15 +40,22 @@ public class PatientsController : Controller
         return View("Register");
     }
 
-    public IActionResult Update()
-        => View();
+    [HttpGet]
+    public async Task<IActionResult> Edit(long id)
+    {
+        var patient = await _service.RetrieveByIdAsync(id);
+        var mappedUser = mapper.Map<Patient>(patient);
+        return View(mappedUser);
+    }
 
     [HttpPost]
-    public async Task<IActionResult> Update(PatientUpdateDto dto)
+    public async Task<IActionResult> Edit(Patient model)
     {
-        await _service.ModifyAsync(dto);
-        return Redirect("Index");
+        var mappedPatient = mapper.Map<PatientUpdateDto>(model);
+        var patient = await _service.ModifyAsync(mappedPatient);
+        return RedirectToAction("Index");
     }
+
 
     [HttpDelete]
     public async Task<IActionResult> Delete(long id)
