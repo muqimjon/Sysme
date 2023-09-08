@@ -29,10 +29,12 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    /*public IActionResult Login()
+    public IActionResult Login()
     {
         return View();
-    }*/
+    }
+
+    [HttpPost]
     public async Task<IActionResult> Login(string email, string password)
     {
         var checkEmail = email;
