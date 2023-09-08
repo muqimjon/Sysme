@@ -10,11 +10,13 @@ public class PatientsController : Controller
 {
     private readonly IPatientService _service;
     private readonly IRepository<Patient> _repository;
+    private readonly IMapper _mapper;   
 
-    public PatientsController(IPatientService service, IRepository<Patient> repository)
+    public PatientsController(IPatientService service, IMapper mapper, IRepository<Patient> repository)
     {
         _service = service;
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<IActionResult> Index()
@@ -44,14 +46,14 @@ public class PatientsController : Controller
     public async Task<IActionResult> Edit(long id)
     {
         var patient = await _service.RetrieveByIdAsync(id);
-        var mappedUser = mapper.Map<Patient>(patient);
+        var mappedUser = _mapper.Map<Patient>(patient);
         return View(mappedUser);
     }
 
     [HttpPost]
     public async Task<IActionResult> Edit(Patient model)
     {
-        var mappedPatient = mapper.Map<PatientUpdateDto>(model);
+        var mappedPatient = _mapper.Map<PatientUpdateDto>(model);
         var patient = await _service.ModifyAsync(mappedPatient);
         return RedirectToAction("Index");
     }
