@@ -11,9 +11,9 @@ namespace Sysme.Service.Services;
 
 public class DoctorService : IDoctorService
 {
+    private readonly IMapper mapper;
     private readonly IRepository<Doctor> repository;
     private readonly IRepository<Hospital> hospitalRepository;
-    private readonly IMapper mapper;
     public DoctorService(IRepository<Doctor> repository, IMapper mapper, IRepository<Hospital> hospitalRepository)
     {
         this.mapper = mapper;
