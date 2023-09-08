@@ -1,11 +1,11 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
 using Serilog;
 using Sysme.Data.Contexts;
+using Microsoft.OpenApi.Any;
 using Sysme.Service.Helpers;
-using Sysme.Web.Middleware;
 using Sysme.WebApi.Extensions;
+using Sysme.WebApi.Middleware;
+using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +26,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 
 
 //Logger
