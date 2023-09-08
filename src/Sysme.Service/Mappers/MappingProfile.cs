@@ -21,36 +21,36 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         //Appointment
-        CreateMap<Appointment, AppointmentResultDto>();
-        CreateMap<AppointmentUpdateDto, Appointment>();
-        CreateMap<AppointmentCreationDto, Appointment>();
+        CreateMap<Appointment, AppointmentResultDto>().ReverseMap();
+        CreateMap<AppointmentUpdateDto, Appointment>().ReverseMap();
+        CreateMap<AppointmentCreationDto, Appointment>().ReverseMap();
 
         //Doctor
-        CreateMap<Doctor, DoctorResultDto>();
-        CreateMap<DoctorUpdateDto, Doctor>();
-        CreateMap<DoctorCreationDto, Doctor>();
+        CreateMap<Doctor, DoctorResultDto>().ReverseMap();
+        CreateMap<DoctorUpdateDto, Doctor>().ReverseMap();
+        CreateMap<DoctorCreationDto, Doctor>().ReverseMap();
 
         //Hospital
-        CreateMap<Hospital, HospitalResultDto>();
-        CreateMap<HospitalUpdateDto, Hospital>();
-        CreateMap<HospitalCreationDto, Hospital>();
+        CreateMap<Hospital, HospitalResultDto>().ReverseMap();
+        CreateMap<HospitalUpdateDto, Hospital>().ReverseMap();
+        CreateMap<HospitalCreationDto, Hospital>().ReverseMap();
 
         //Patient
-        CreateMap<Patient, PatientResultDto>();
-        CreateMap<PatientUpdateDto, Patient>();
-        CreateMap<PatientCreationDto, Patient>();
+        CreateMap<Patient, PatientResultDto>().ReverseMap();
+        CreateMap<PatientUpdateDto, Patient>().ReverseMap();
+        CreateMap<PatientCreationDto, Patient>().ReverseMap();
 
         //Schedule
-        CreateMap<Schedule, ScheduleResultDto>();
-        CreateMap<ScheduleUpdateDto, Schedule>();
-        CreateMap<ScheduleCreationDto, Schedule>();
+        CreateMap<Schedule, ScheduleResultDto>().ReverseMap();
+        CreateMap<ScheduleUpdateDto, Schedule>().ReverseMap();
+        CreateMap<ScheduleCreationDto, Schedule>().ReverseMap();
 
         //Attachment
-        CreateMap<AttachmentResultDto, Attachment>();
+        CreateMap<AttachmentResultDto, Attachment>().ReverseMap();
 
         //Employee
-        CreateMap<Employee, EmployeeResultDto>();
-        CreateMap<EmployeeUpdateDto, Employee>();
-        CreateMap<EmployeeCreationDto, Employee>();
+        CreateMap<Employee, EmployeeResultDto>().ReverseMap();
+        CreateMap<EmployeeUpdateDto, Employee>().ReverseMap();
+        CreateMap<EmployeeCreationDto, Employee>().ReverseMap();
     }
 }
