@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Hospitals;
-using Sysme.Service.DTOs.Patients;
-using Sysme.Service.Services;
+using Sysme.Service.Interfaces;
 
 namespace Sysme.Web.Controllers;
 
-
 public class HospitalsController : Controller
 {
-    private readonly HospitalService _service;
+    private readonly IHospitalService _service;
 
-    public HospitalsController(HospitalService service)
+    public HospitalsController(IHospitalService service)
     {
         _service = service;
     }

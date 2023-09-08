@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Doctors;
-using Sysme.Service.Services;
+using Sysme.Service.Interfaces;
 
 namespace Sysme.Web.Controllers;
 
 public class DoctorsController : Controller
 {
-    private readonly DoctorService _service;
+    private readonly IDoctorService _service;
 
-    public DoctorsController(DoctorService service)
+    public DoctorsController(IDoctorService service)
     {
         _service = service;
     }
 
-    public IActionResult Index()
-
-        => View();
+    public async Task<IActionResult> Index()
+        => View(await _service.RetrieveAllAsync());
 
     public async Task<IActionResult> Details(long id)
         => View(await _service.RemoveByIdAsync(id));

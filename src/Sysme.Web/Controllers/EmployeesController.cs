@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Employees;
-using Sysme.Service.DTOs.Patients;
-using Sysme.Service.Services;
+using Sysme.Service.Interfaces;
 
 namespace Sysme.Web.Controllers;
 
 public class EmployeesController : Controller
 {
-    private readonly EmployeeService _service;
+    private readonly IEmployeeService _service;
 
-    public EmployeesController(EmployeeService service)
+    public EmployeesController(IEmployeeService service)
     {
         _service = service;
     }
