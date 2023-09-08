@@ -1,29 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Patients;
+using Sysme.Service.Interfaces;
 using Sysme.Service.Services;
 
 namespace Sysme.Web.Controllers;
 public class PatientsController : Controller
 {
-    private readonly PatientService _service;
+    private readonly IPatientService _service;
 
-    public PatientsController(PatientService service)
+    public PatientsController(IPatientService service)
     {
         _service = service;
     }
 
-    public IActionResult Index()
-
-        => View();
+    public async Task<IActionResult> Index()
+    {
+        var patients = await _service.RetrieveAllAsync();
+        return View(patients);
+    }
 
     public async Task<IActionResult> Details(long id)
         => View(await _service.RemoveByIdAsync(id));
 
-    public IActionResult Create()
+    public IActionResult Register()
         => View();
 
     [HttpPost]
-    public async Task<IActionResult> Cereate(PatientCreationDto dto)
+    public async Task<IActionResult> Create(PatientCreationDto dto)
     {
         await _service.AddAsync(dto);
         return Redirect("Index");
