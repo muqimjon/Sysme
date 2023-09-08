@@ -35,8 +35,11 @@ public class PatientsController : Controller
     public async Task<IActionResult> Create(PatientCreationDto dto)
     {
         var res = await _repository.GetAsync(x => x.Email.Equals(dto.Email));
-        if(res is null) 
+        if (res is null)
+        {
             await _service.AddAsync(dto);
+            return RedirectToAction("Index");
+        }
 
         TempData["errorMessage"] = "This user is already exist!";    
         return View("Register");
