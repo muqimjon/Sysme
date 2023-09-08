@@ -21,17 +21,6 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="User photo">
-                <div class="card-body">
-                    <h5 class="card-title">@item.FirstName @item.LastName</h5>
-                    <p class="card-text">Id : @item.Id</p>
-                    <p class="card-text">Email : @item.Email</p>
-                    <p class="card-text">Phone : @item.Phone</p>
-                    <a href="#" class="btn btn-success gradient-custom-4 text-body" >Edit</a>
-                    <a href="#" class="btn btn-primary" >Details</a>
-                </div>
-            </div>
             <tr>
                 <th>
                     @Html.DisplayFor(i => item.Id)
