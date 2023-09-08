@@ -9,7 +9,7 @@ namespace Sysme.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IAuthService authService
+    private readonly IAuthService authService;
     public HomeController(IAuthService authService)
     {
         this.authService = authService;
@@ -32,5 +32,17 @@ public class HomeController : Controller
     }
 
     public async Task<IActionResult> Login(string email, string password)
-        => View(await authService.GenerateTokenAsync(email, password));    
+    {
+        var checkEmail = email;
+        var checkPassword = password;   
+        var check = await authService.CheckLogin(checkEmail, checkPassword);
+        if (check)
+        {
+            return RedirectToAction("Index","Patients");
+        }
+        else
+        {
+            return View("Index");
+        }
+    }
 }

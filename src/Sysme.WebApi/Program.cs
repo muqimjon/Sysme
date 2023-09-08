@@ -1,11 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Sysme.Data.Contexts;
-using Microsoft.OpenApi.Any;
 using Sysme.Service.Helpers;
 using Sysme.WebApi.Extensions;
-using Sysme.WebApi.Middleware;
-using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
