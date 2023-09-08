@@ -29,10 +29,10 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    /*public IActionResult Login()
+    public IActionResult Menu()
     {
         return View();
-    }*/
+    }
     public async Task<IActionResult> Login(string email, string password)
     {
         var checkEmail = email;
@@ -40,7 +40,7 @@ public class HomeController : Controller
         var check = await authService.CheckLogin(checkEmail, checkPassword);
         if (check is true)
         {
-            return RedirectToAction("Index","Patients");
+            return RedirectToAction("Menu");
         }
         else
         {
