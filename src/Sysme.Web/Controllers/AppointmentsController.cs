@@ -15,7 +15,6 @@ public class AppointmentsController : Controller
     }
 
     public IActionResult Index()
-
         => View();
 
     public async Task<IActionResult> Details(long id)
