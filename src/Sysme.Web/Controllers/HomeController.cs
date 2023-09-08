@@ -29,6 +29,10 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
+    /*public IActionResult Login()
+    {
+        return View();
+    }*/
     public async Task<IActionResult> Login(string email, string password)
     {
         var checkEmail = email;
@@ -41,7 +45,7 @@ public class HomeController : Controller
         else
         {
             TempData["errorMessage"] = "Invalid email or password!";
-            return View("Index");
+            return View("Login");
         }
     }
 }
