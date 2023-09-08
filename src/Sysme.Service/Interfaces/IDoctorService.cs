@@ -10,5 +10,5 @@ public interface IDoctorService
     Task<DoctorResultDto> RetrieveByIdAsync(long id);
     Task<IEnumerable<DoctorResultDto>> RetrieveAllAsync();
     Task<IEnumerable<DoctorResultDto>> SearchByQuery(string query);
-    Task<Dictionary<string, bool>> GetPlan(long id);
+    Task<List<Dictionary<string, bool>>> GetPlan(long id);
 }

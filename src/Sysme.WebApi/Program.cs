@@ -4,8 +4,8 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using Sysme.Data.Contexts;
 using Sysme.Service.Helpers;
-using Sysme.Web.Middleware;
 using Sysme.WebApi.Extensions;
+using Sysme.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
