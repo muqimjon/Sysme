@@ -34,7 +34,7 @@ public class DoctorsController : Controller
     {
         var existQuery = query;
         var result = await _service.SearchByQuery(existQuery);
-        return View(result);
+        return View("Detail", result);
     }
 
     public IActionResult Update()

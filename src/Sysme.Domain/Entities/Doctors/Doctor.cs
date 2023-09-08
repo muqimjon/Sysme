@@ -14,6 +14,7 @@ public class Doctor : AudiTable
     public string Email { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
+    public decimal Price { get; set; }
     public Gender Gender { get; set; }
 
     public long HospitalId { get; set; }

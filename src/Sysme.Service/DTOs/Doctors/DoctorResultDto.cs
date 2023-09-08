@@ -11,6 +11,7 @@ public class DoctorResultDto
     public string Specialty { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
+    public decimal Price { get; set; }
     public Gender Gender { get; set; }
     public HospitalResultDto Hospital { get; set; } = default!;
 }
