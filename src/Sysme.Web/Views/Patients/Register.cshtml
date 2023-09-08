@@ -1,18 +1,16 @@
 ﻿@using Sysme.Service.DTOs.Patients;
-
 @model PatientCreationDto
 
-
-<section class="h-100 bg-dark">
+<section style="background-color: #2D522D; height:87.2vh;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card card-registration my-4">
                     <div class="row g-0">
                         <div class="col-xl-6 d-none d-xl-block">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                            <img src="https://media.licdn.com/dms/image/C4D12AQGdZAIAcFNlzw/article-inline_image-shrink_1000_1488/0/1627922583458?e=1698278400&v=beta&t=02YLkt1sPVuzGctBFRt9w33YQImALGWE3nffGrt8JKw"
                                  alt="Sample photo" class="img-fluid"
-                                 style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                 style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:75vh; object-fit: cover;" />
                         </div>
                         <div class="col-xl-6">
                             <div class="card-body p-md-5 text-black">
@@ -22,13 +20,13 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input asp-for=FirstName type="text" id="form3Example1m" class="form-control form-control-lg" />
+                                            <input asp-for=FirstName type="text" id="form3Example1m" class="form-control form-control-lg" required="true" />
                                             <label asp-for=FirstName class="form-label" for="form3Example1m">First name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input asp-for=LastName type="text" id="form3Example1n" class="form-control form-control-lg" />
+                                                <input asp-for=LastName type="text" id="form3Example1n" class="form-control form-control-lg" required="true" />
                                             <label asp-for=LastName class="form-label" for="form3Example1n">Last name</label>
                                         </div>
                                     </div>
@@ -37,20 +35,20 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input asp-for=Phone type="tel" id="form3Example1m1" class="form-control form-control-lg" />
+                                                <input asp-for=Phone type="tel" id="form3Example1m1" class="form-control form-control-lg" required="true" />
                                             <label asp-for=Phone class="form-label" for="form3Example1m1">Phone</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input asp-for="Email" type="email" id="form3Example1n1" class="form-control form-control-lg" />
+                                                <input asp-for="Email" type="email" id="form3Example1n1" class="form-control form-control-lg" required="true" />
                                             <label asp-for=Email class="form-label" for="form3Example1n1">Email</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input asp-for=Address type="text" id="form3Example8" class="form-control form-control-lg" />
+                                        <input asp-for=Address type="text" id="form3Example8" class="form-control form-control-lg" required="true" />
                                     <label asp-for=Address class="form-label" for="form3Example8">Address</label>
                                 </div>
 
@@ -59,55 +57,32 @@
                                     <h6 class="mb-0 me-4">Gender: </h6>
 
                                     <div class="form-check form-check-inline mb-0 me-4">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                               value="option1" />
+                                        <input asp-for=Gender class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                                                   value="option1" required="true" />
                                         <label class="form-check-label" for="femaleGender">Female</label>
                                     </div>
 
                                     <div class="form-check form-check-inline mb-0 me-4">
                                         <input asp-for=Gender class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                               value="option2" />
+                                                   value="option2" required="true" />
                                         <label asp-for=Gender class="form-check-label" for="maleGender">Male</label>
                                     </div>
 
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-
-                                        <select class="select">
-                                            <option value="1">State</option>
-                                            <option value="2">Option 1</option>
-                                            <option value="3">Option 2</option>
-                                            <option value="4">Option 3</option>
-                                        </select>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-
-                                        <select class="select">
-                                            <option value="1">City</option>
-                                            <option value="2">Option 1</option>
-                                            <option value="3">Option 2</option>
-                                            <option value="4">Option 3</option>
-                                        </select>
-
-                                    </div>
+                                <div class="form-outline mb-4">
+                                        <input asp-for=DateOfBirth type="date" id="form3Example9" class="form-control form-control-lg" required="true" />
+                                    <label asp-for=DateOfBirth class="form-label" for="form3Example9">Birth date</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input asp-for=DateOfBirth type="date" id="form3Example9" class="form-control form-control-lg" />
-                                    <label asp-for=DateOfBirth class="form-label" for="form3Example9">DOB</label>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <input asp-for=Password type="password" id="form3Example90" class="form-control form-control-lg" />
+                                        <input asp-for=Password type="password" id="form3Example90" class="form-control form-control-lg" required="true" />
                                     <label asp-for=Password class="form-label" for="form3Example90">Password</label>
                                 </div>
 
                                 <div class="d-flex justify-content-end pt-3">
                                     <button type="submit" class="btn btn-light btn-lg">Reset all</button>
-                                    <button type="submit" class="btn btn-warning btn-lg ms-2" asp-action="Create" >Submit form</button>
+                                    <button type="submit" class="btn btn-success btn-lg ms-2" asp-action="Create" >Submit form</button>
                                 </div>
                                 </form>
                             </div>
