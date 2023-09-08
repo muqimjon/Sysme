@@ -2,45 +2,24 @@
 
 @model IEnumerable<PatientResultDto>
 
-<table class="table table-bordered table-hover mt-4">
-    <thead>
-        <tr>
-            @{
-                var patient = Model.FirstOrDefault();
-            }
-            <th>@Html.DisplayNameFor(item => patient.Id)</th>
-            <th>@Html.DisplayNameFor(item => patient.FirstName)</th>
-            <th>@Html.DisplayNameFor(item => patient.LastName)</th>
-            <th>@Html.DisplayNameFor(item => patient.Email)</th>
-            <th>@Html.DisplayNameFor(item => patient.Phone)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+<h1>Patients</h1>
+<br/>
+
+<div class="container">
+    <div class="row mb-3">
+        @foreach(var item in Model)
         {
-            <tr>
-                <th>
-                    @Html.DisplayFor(i => item.Id)
-                </th>
-                <th>
-                    @Html.DisplayFor(i => item.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayFor(i => item.LastName)
-                </th>
-                <th>
-                    @Html.DisplayFor(i => item.Email)
-                </th>
-                <th>
-                    @Html.DisplayFor(i => item.Phone)
-                </th>
-                <th>
-                    <form asp-controller="Users" method="get">
-                        <button class="btn btn-success gradient-custom-4 text-body" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
-                        <button class="btn btn-primary" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
-                    </form>
-                </th>
-            </tr>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.FirstName @item.LastName</h5>
+                    <p class="card-text">Id : @item.Id</p>
+                    <p class="card-text">Email : @item.Email</p>
+                    <p class="card-text">Phone : @item.Phone</p>
+                    <a href="#" class="btn btn-success gradient-custom-4 text-body" asp-controller="Patients" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a href="#" class="btn btn-primary" asp-controller="Patients" asp-action="Detail" asp-route-id="@item.Id">Details</a>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>

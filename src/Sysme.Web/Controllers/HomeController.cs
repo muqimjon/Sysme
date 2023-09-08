@@ -2,14 +2,12 @@
 using Sysme.Service.Interfaces;
 using Sysme.Web.Models;
 using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography.Xml;
 
 namespace Sysme.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IAuthService authService
+    private readonly IAuthService authService;
     public HomeController(IAuthService authService)
     {
         this.authService = authService;
@@ -32,5 +30,5 @@ public class HomeController : Controller
     }
 
     public async Task<IActionResult> Login(string email, string password)
-        => View(await authService.GenerateTokenAsync(email, password));    
+        => View(await authService.GenerateTokenAsync(email, password));
 }
