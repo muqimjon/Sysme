@@ -29,6 +29,13 @@
                     <label class="form-label" for="form2Example27">Password</label>
                   </div>
 
+                  @if (TempData["errorMessage"] is not null)
+                  {
+                  <div class="alert-danger mb-4">
+                    @TempData["errorMessage"]
+                  </div>
+                  }
+
                   <div class="pt-1 mb-4">
                     <button class="btn btn-dark btn-lg btn-block" type="submit" asp-controller="Home" asp-action="Login">Login</button>
                   </div>
@@ -48,3 +55,6 @@
     </div>
   </div>
 </section>
+
+
+

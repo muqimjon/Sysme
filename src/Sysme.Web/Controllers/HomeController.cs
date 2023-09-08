@@ -34,12 +34,13 @@ public class HomeController : Controller
         var checkEmail = email;
         var checkPassword = password;   
         var check = await authService.CheckLogin(checkEmail, checkPassword);
-        if (check)
+        if (check is true)
         {
             return RedirectToAction("Index","Patients");
         }
         else
         {
+            TempData["errorMessage"] = "Invalid email or password!";
             return View("Index");
         }
     }

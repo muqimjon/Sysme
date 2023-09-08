@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Sysme.Data.IRepositories;
 using Sysme.Domain.Entities.Patients;
 using Sysme.Service.DTOs.Patients;
 using Sysme.Service.Interfaces;
@@ -8,12 +9,14 @@ namespace Sysme.Web.Controllers;
 public class PatientsController : Controller
 {
     private readonly IPatientService _service;
-    private readonly IMapper mapper;
+    private readonly IRepository<Patient> _repository;
+    private readonly IMapper _mapper;   
 
-    public PatientsController(IPatientService service, IMapper mapper)
+    public PatientsController(IPatientService service, IMapper mapper, IRepository<Patient> repository)
     {
         _service = service;
-        this.mapper = mapper;
+        _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<IActionResult> Index()
@@ -31,22 +34,26 @@ public class PatientsController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(PatientCreationDto dto)
     {
-        await _service.AddAsync(dto);
-        return Redirect("Index");
+        var res = await _repository.GetAsync(x => x.Email.Equals(dto.Email));
+        if(res is null) 
+            await _service.AddAsync(dto);
+
+        TempData["errorMessage"] = "This user is already exist!";    
+        return View("Register");
     }
 
     [HttpGet]
     public async Task<IActionResult> Edit(long id)
     {
         var patient = await _service.RetrieveByIdAsync(id);
-        var mappedUser = mapper.Map<Patient>(patient);
+        var mappedUser = _mapper.Map<Patient>(patient);
         return View(mappedUser);
     }
 
     [HttpPost]
     public async Task<IActionResult> Edit(Patient model)
     {
-        var mappedPatient = mapper.Map<PatientUpdateDto>(model);
+        var mappedPatient = _mapper.Map<PatientUpdateDto>(model);
         var patient = await _service.ModifyAsync(mappedPatient);
         return RedirectToAction("Index");
     }

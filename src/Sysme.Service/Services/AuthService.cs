@@ -26,14 +26,15 @@ public class AuthService : IAuthService
 
     public async Task<bool> CheckLogin(string email, string password)
     {
-        var employee = await patientRepository.GetAsync(x => x.Email.Equals(email))
-           ?? throw new NotFoundException("Not found!");
+        var employee = await patientRepository.GetAsync(x => x.Email.Equals(email));
+        if(employee is null)
+            return false;
 
         bool varifiedPassword = PasswordHasher.Verify(password, employee.Password);
         if (!varifiedPassword)
-            throw new NotFoundException($"{email} is not valid or {password}.");
+            return false;
 
-        return varifiedPassword;
+        return true;
     }
 
     public async Task<string> GenerateTokenAsync(string email, string password)
