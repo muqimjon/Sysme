@@ -29,6 +29,14 @@ public class DoctorsController : Controller
         return Redirect("Index");
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Search(string query)
+    {
+        var existQuery = query;
+        var result = await _service.SearchByQuery(existQuery);
+        return View(result);
+    }
+
     public IActionResult Update()
         => View();
 
