@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 
 PathHelper.WebRootPath = Path.GetFullPath("wwwroot");
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
