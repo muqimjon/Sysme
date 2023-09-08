@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Views\Doctors\" />
     <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 

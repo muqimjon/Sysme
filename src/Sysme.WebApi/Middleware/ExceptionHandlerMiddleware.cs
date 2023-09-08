@@ -1,7 +1,7 @@
 ﻿using Sysme.Service.Exceptions;
 using Sysme.WebApi.Models;
 
-namespace Sysme.Web.Middleware;
+namespace Sysme.WebApi.Middleware;
 
 public class ExceptionHandlerMiddleware
 {
