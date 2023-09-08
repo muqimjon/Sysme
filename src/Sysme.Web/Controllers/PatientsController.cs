@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sysme.Data.IRepositories;
+using Sysme.Domain.Entities.Patients;
 using Sysme.Service.DTOs.Patients;
 using Sysme.Service.Interfaces;
 
@@ -6,10 +8,12 @@ namespace Sysme.Web.Controllers;
 public class PatientsController : Controller
 {
     private readonly IPatientService _service;
+    private readonly IRepository<Patient> _repository;
 
-    public PatientsController(IPatientService service)
+    public PatientsController(IPatientService service, IRepository<Patient> repository)
     {
         _service = service;
+        _repository = repository;
     }
 
     public async Task<IActionResult> Index()
@@ -27,8 +31,12 @@ public class PatientsController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(PatientCreationDto dto)
     {
-        await _service.AddAsync(dto);
-        return Redirect("Index");
+        var res = await _repository.GetAsync(x => x.Email.Equals(dto.Email));
+        if(res is null) 
+            await _service.AddAsync(dto);
+
+        TempData["errorMessage"] = "This user is already exist!";    
+        return View("Register");
     }
 
     public IActionResult Update()
