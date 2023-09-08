@@ -9,4 +9,5 @@ public interface IDoctorService
     Task<bool> RemoveByIdAsync(long id);
     Task<DoctorResultDto> RetrieveByIdAsync(long id);
     Task<IEnumerable<DoctorResultDto>> RetrieveAllAsync();
+    Task<IEnumerable<DoctorResultDto>> SearchByQuery(string query);
 }

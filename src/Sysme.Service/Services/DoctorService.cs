@@ -12,9 +12,9 @@ namespace Sysme.Service.Services;
 
 public class DoctorService : IDoctorService
 {
+    private readonly IMapper mapper;
     private readonly IRepository<Doctor> repository;
     private readonly IRepository<Hospital> hospitalRepository;
-    private readonly IMapper mapper;
     public DoctorService(IRepository<Doctor> repository, IMapper mapper, IRepository<Hospital> hospitalRepository)
     {
         this.mapper = mapper;
@@ -52,13 +52,13 @@ public class DoctorService : IDoctorService
 
     public async Task<IEnumerable<DoctorResultDto>> RetrieveAllAsync()
     {
-        var allDoctors = await repository.GetAll().ToListAsync();
+        var allDoctors = await repository.GetAll(includes: new[] {"Hospital"}).ToListAsync();
         return mapper.Map<IEnumerable<DoctorResultDto>>(allDoctors);
     }
 
     public async Task<DoctorResultDto> RetrieveByIdAsync(long id)
     {
-        var existDoctor = await repository.GetAsync(h => h.Id.Equals(id))
+        var existDoctor = await repository.GetAsync(h => h.Id.Equals(id), includes: new[] { "Hospital" })
             ?? throw new NotFoundException("This Doctor not found");
 
         return mapper.Map<DoctorResultDto>(existDoctor);
@@ -74,5 +74,15 @@ public class DoctorService : IDoctorService
         await repository.SaveChanges();
 
         return mapper.Map<DoctorResultDto>(existDoctor);
+    }
+
+    public async Task<IEnumerable<DoctorResultDto>> SearchByQuery(string query)
+    {
+        var result = await repository.GetAll(includes: new[] {"Hospital"}).Where(d => d.Specialty.Contains(query) || d.Hospital.Name.Contains(query) 
+        || d.FirstName.Contains(query) || d.LastName.Contains(query) || d.Email.Contains(query) || d.Phone.Contains(query)).ToListAsync();
+        if (result is null)
+            return null;
+
+        return mapper.Map<IEnumerable<DoctorResultDto>>(result);
     }
 }
