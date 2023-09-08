@@ -34,4 +34,8 @@ public class DoctorsController : BaseController
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAllAsync()
         => Ok(new Response { Data = await doctorService.RetrieveAllAsync() });
+    
+    [HttpGet("get/{query}")]
+    public async Task<IActionResult> GetByQueryAsync( string query)
+        => Ok(new Response { Data = await doctorService.SearchByQuery(query) });
 }

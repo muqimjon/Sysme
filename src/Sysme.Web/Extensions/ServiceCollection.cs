@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Sysme.Data.IRepositories;
 using Sysme.Data.Repositories;
 using Sysme.Service.Interfaces;
@@ -8,7 +7,7 @@ using Sysme.Service.Mappers;
 using Sysme.Service.Services;
 using System.Text;
 
-namespace Sysme.WebApi.Extensions;
+namespace Sysme.Web.Extensions;
 
 public static class ServiceCollection
 {
@@ -50,34 +49,5 @@ public static class ServiceCollection
             };
         });
     }
-
-    public static void ConfigureSwagger(this IServiceCollection services)
-    {
-        services.AddSwaggerGen(setup =>
-        {
-            // Include 'SecurityScheme' to use JWT Authentication
-            var jwtSecurityScheme = new OpenApiSecurityScheme
-            {
-                BearerFormat = "JWT",
-                Name = "JWT Authentication",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = JwtBearerDefaults.AuthenticationScheme,
-                Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
-
-                Reference = new OpenApiReference
-                {
-                    Id = JwtBearerDefaults.AuthenticationScheme,
-                    Type = ReferenceType.SecurityScheme
-                }
-            };
-
-            setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
-
-            setup.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    { jwtSecurityScheme, Array.Empty<string>() }
-                });
-        });
-    }
 }
+
