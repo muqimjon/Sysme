@@ -30,5 +30,5 @@ public class HomeController : Controller
     }
 
     public async Task<IActionResult> Login(string email, string password)
-        => View(await authService.GenerateTokenAsync(email, password));    
+        => View(await authService.GenerateTokenAsync(email, password));
 }

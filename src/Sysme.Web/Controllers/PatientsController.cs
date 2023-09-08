@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sysme.Service.DTOs.Patients;
 using Sysme.Service.Interfaces;
-using Sysme.Service.Services;
 
 namespace Sysme.Web.Controllers;
 public class PatientsController : Controller
